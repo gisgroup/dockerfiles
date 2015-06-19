@@ -1,5 +1,14 @@
 # dockerfiles
 
+## Test med docker-compose
+Opsætningen kan testes på en enkelt server (fx gc2 vm billdet), ved hjælp af docker-compose (kan installeres med pythons pip).
+
+Bare start en terminal og cd til dockerfiles git-arkiv mappen, og kør
+
+    docker-compose up
+
+Når det skal sættes op med forwarder på én server og logstash på en anden skal det selvfølgelig gøres manuelt:
+
 ## Logstash forwarder
 Indtil billederne kommer på docker hub skal de lige bygges lokalt først:
 
