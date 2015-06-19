@@ -14,7 +14,7 @@ forward:
   volumes_from:
     - certs
   volumes:
-    - /var/logs/apache2:/var/logs/apache:ro
+    - /var/log/apache2:/var/log/apache
   links:
     - "logstash:logstash"
 
