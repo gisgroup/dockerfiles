@@ -13,6 +13,8 @@ forward:
   build: logforw
   volumes_from:
     - certs
+  volumes:
+    - /var/logs/apache2:/var/logs/apache:ro
   links:
     - "logstash:logstash"
 
