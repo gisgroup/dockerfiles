@@ -1,0 +1,22 @@
+logstash:
+  build: logmaster
+  ports:
+    - 9200:9200
+    - 9300:9300
+    - 5601:5601
+  volumes_from:
+    - certs
+  environment:
+    LOGSTASH_DOMAIN: logstash
+
+forward:
+  build: logforw
+  volumes_from:
+    - certs
+  links:
+    - "logstash:logstash"
+
+certs:
+  image: debian
+  volumes:
+    - /certs
