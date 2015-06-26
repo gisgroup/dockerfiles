@@ -34,4 +34,5 @@ Og endelig skal logstash forwarder instansen startes et sted
     sudo docker run \
        -v /var/log/apache2:/var/log/apache \
        -v /certs:/certs \
+       -add-host logstash:INDSÆTDINSERVERIPADDRESSEHER \
        gc2logstashforwader
