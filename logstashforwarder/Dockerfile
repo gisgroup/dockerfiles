@@ -21,5 +21,8 @@ RUN apt-get update && apt-get install -y \
 COPY ./logstash-forwarder.conf /etc/
 RUN mkdir /certs
 
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Run logstash forwarder
 CMD [ "/opt/logstash-forwarder/bin/logstash-forwarder", "-config", "/etc/logstash-forwarder.conf" ]

@@ -1,4 +1,4 @@
-logstash:
+master:
   build: logstashmaster
   ports:
     - 9200:9200
@@ -7,16 +7,18 @@ logstash:
   volumes_from:
     - certs
   environment:
-    LOGSTASH_DOMAIN: logstash
+    LOGSTASH_DOMAIN: logstashhostname
 
 forward:
   build: logstashforwarder
   volumes_from:
     - certs
   volumes:
-    - /var/log/apache2:/var/log/apache
+    - logstashforwarder/logexamples:/var/log/apache
   links:
-    - "logstash:logstash"
+    - master:logstashhostname
+  environment:
+    MASTER: logstashhostname
 
 certs:
   image: debian

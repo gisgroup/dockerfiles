@@ -38,7 +38,7 @@ EXPOSE 9200 9300 5601 5043
 ADD etc/logstash.conf /root/logstash-apache.conf
 
 # Add Supervisor config and run the deamon
-ADD etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

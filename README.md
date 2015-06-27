@@ -21,7 +21,7 @@ Certifikatet kan oprettes med en IP som hostname med
 
     sudo docker run --name logstashmaster -p 9200:9200 -p 5601:5601 -p 5043:5043 -e LOGSTASH_IP=INDSÆTDINSERVERIPADDRESSEHER gc2logstashmaster
 
-Eller med et domænenavn ved at bruge
+Eller med et domænenavn ved at bruge (bemærk at det er forskellige miljøvariable som sættes!)
 
     sudo docker run --name logstashmaster -p 9200:9200 -p 5601:5601 -p 5043:5043 -e LOGSTASH_DOMAIN=INDSÆTDINSERVERIPADDRESSEHER gc2logstashmaster
 
@@ -32,7 +32,10 @@ Så skal certifikattet hentes ud af containeren
 Og endelig skal logstash forwarder instansen startes et sted
 
     sudo docker run \
-       -v /var/log/apache2:/var/log/apache \
        -v /certs:/certs \
-       -add-host logstash:INDSÆTDINSERVERIPADDRESSEHER \
+       -v /var/log/apache2:/var/log/apache \
+       -e LOGSTASH=INDSÆTDINSERVERIPADDRESSEHER \
        gc2logstashforwader
+
+Her skal mountes mindst to mapper, en med ssl certifikater, samt en eller flere mapper med log filer.
+Nødvendig er også miljøvariablen LOGSTASH som skal pege på IP eller hostnavn på logstash serveren.
